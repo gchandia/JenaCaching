@@ -1,0 +1,1 @@
+Number of disconnected queries are 12
