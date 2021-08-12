@@ -353,6 +353,7 @@ public class FillCache {
 		//System.out.println(ResultSetFormatter.asText(q10Results));
 		myCache.cache(q24Bgps.get(0), q24Results);
 		
+		
 		String s25 = "PREFIX wiki: <http://www.wikidata.org/prop/direct/>\n"
 				+ "PREFIX we: <http://www.wikidata.org/entity/>\n"
 				+ "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n"
@@ -374,6 +375,7 @@ public class FillCache {
 		//System.out.println(r.size());
 		//System.out.println(ResultSetFormatter.asText(q10Results));
 		myCache.cache(q25Bgps.get(0), q25Results);
+		
 		
 		String s26 = "PREFIX wiki: <http://www.wikidata.org/prop/direct/>\n"
 				+ "PREFIX we: <http://www.wikidata.org/entity/>\n"

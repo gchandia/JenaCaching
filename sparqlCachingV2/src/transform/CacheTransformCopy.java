@@ -68,11 +68,7 @@ public class CacheTransformCopy extends TransformCopy {
 		
 		// We add each Op instance in bgps to the array we'll work on with the cache
 		ArrayList<Op> cachedBgps = new ArrayList<Op>();
-		ArrayList<OpBGP> sepBgps = ExtractBgps.separateBGPs(bgps);
-
-		for (Op op : sepBgps) {
-			cachedBgps.add(op);
-		}
+		cachedBgps.addAll(sizeOneBgps);
 		
 		long beforeCache = System.nanoTime();
 		String bc = "Time before registering cache is: " + (beforeCache - startLine);
@@ -80,6 +76,7 @@ public class CacheTransformCopy extends TransformCopy {
 		String br = "DIDN'T RETRIEVE";
 		String ar = "DIDN'T RETRIEVE";
 		String sol = "DIDN'T RETRIEVE";
+		long canons = 0;
 		
 		for (ArrayList<OpBGP> bgpList : sortedSubBgps) {
 			ArrayList<OpBGP> canonbgpList = ExtractBgps.separateBGPs(bgpList);
@@ -89,11 +86,14 @@ public class CacheTransformCopy extends TransformCopy {
 			bgp = ExtractBgps.unifyBGPs(canonbgpList);
 			Map<String, String> vars = new HashMap<String, String>();
 			try {
+				long beforeCanon = System.nanoTime();
 				bgp = ExtractBgps.canonBGP(bgp);
+				long afterCanon = System.nanoTime();
+				canons += (afterCanon - beforeCanon);
 				vars = ExtractBgps.getVarMap();
 			} catch (Exception e) {}
 			
-			if (myCache.isBgpInCacheV2(bgp) && ManipulateBgps.checkIfInBgp(cachedBgps, bgpList)) {
+			if (myCache.isBgpInCache(bgp) && ManipulateBgps.checkIfInBgp(cachedBgps, bgpList)) {
 				ec = "ENTERED CACHE";
 				long whenCache = System.nanoTime();
 				br = "Time before retrieving from cache: " + (whenCache - startLine);
@@ -103,6 +103,7 @@ public class CacheTransformCopy extends TransformCopy {
 				ar = "Time after retrieving from cache: " + (afterCache - startLine);
 			}
 		}
+		String sCanon = "Time to canonicalize all subqueries: " + canons;
 		
 		// Join Bgps
 		Op join = null;
@@ -119,7 +120,7 @@ public class CacheTransformCopy extends TransformCopy {
 		
 		Op opjoin = Algebra.optimize(join);
 		
-		formSolution(bc + '\n' + ec + '\n' + br + '\n' + sol + '\n' + ar);
+		formSolution(bc + '\n' + sCanon + '\n' + ec + '\n' + br + '\n' + sol + '\n' + ar);
 		
 		return opjoin;
 	}
