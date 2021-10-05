@@ -21,7 +21,7 @@ import bgps.ManipulateBgps;
 import cache.SolutionCache;
 import cl.uchile.dcc.blabel.label.GraphColouring.HashCollisionException;
 import common_joins.Joins;
-import main.SingleQuery;
+import main.java.cl.uchile.dcc.main.*;
 import utils.ArrayPermutations;
 
 public class ExecuteCacheQueries {

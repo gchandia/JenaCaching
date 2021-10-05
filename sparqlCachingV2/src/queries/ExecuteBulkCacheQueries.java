@@ -50,7 +50,7 @@ import bgps.ManipulateBgps;
 import cache.SolutionCache;
 import common_joins.Joins;
 import common_joins.Parser;
-import main.SingleQuery;
+import main.java.cl.uchile.dcc.main.*;
 import utils.ArrayPermutations;
 
 public class ExecuteBulkCacheQueries {

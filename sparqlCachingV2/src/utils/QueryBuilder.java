@@ -14,7 +14,7 @@ import org.apache.jena.sparql.syntax.ElementGroup;
 
 import bgps.ExtractBgps;
 import common_joins.Joins;
-import main.SingleQuery;
+import main.java.cl.uchile.dcc.main.*;
 
 public class QueryBuilder {
 	

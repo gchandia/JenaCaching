@@ -30,6 +30,7 @@ import org.apache.jena.tdb.TDBFactory;
 import cache.FillCache;
 import common_joins.Parser;
 import transform.CacheTransformCopy;
+import java.util.concurrent.TimeUnit;
 
 public class ExperimentCacheQueries {
 private static int j = 1;
@@ -73,24 +74,33 @@ private static int j = 1;
 		ds.begin(ReadWrite.READ);
 		// Define model and Query
 		Model model = ds.getDefaultModel();
-		BufferedReader tsv = 
+		/*BufferedReader tsv = 
 				new BufferedReader (
 						new InputStreamReader(
 								new GZIPInputStream(
 										new FileInputStream(
 												new File("D:\\wikidata_logs\\2017-07-10_2017-08-06_organic.tsv.gz")))));
-		System.out.println(getNumberOfCompressedLines("D:\\wikidata_logs\\2017-07-10_2017-08-06_organic.tsv.gz"));
+		*/BufferedReader tsv = 
+				new BufferedReader (
+						new InputStreamReader(
+								new GZIPInputStream(
+										new FileInputStream(
+												new File("D:\\wikidata_logs\\five_queries.tsv.gz")))));
+		//System.out.println(getNumberOfCompressedLines("D:\\wikidata_logs\\2017-07-10_2017-08-06_organic.tsv.gz"));
+		System.out.println(getNumberOfCompressedLines("D:\\wikidata_logs\\five_queries.tsv.gz"));
 		FillCache cache = new FillCache();
-		PrintWriter w = new PrintWriter(new FileWriter("D:\\tmp\\CacheQueries.txt"));
+		PrintWriter w = new PrintWriter(new FileWriter("D:\\tmp\\CacheQueries5.txt"));
 		
-		for (int i = 1; i <= 5000; i++) {
+		// Only if first line is garbage
+		//tsv.readLine();
+		
+		for (int i = 1; i <= 5; i++) {
 			final Runnable stuffToDo = new Thread() {
 				@Override
 				public void run() {
 					try {
 						System.out.println("Reading query " + j++);
 						String line = tsv.readLine();
-						line = tsv.readLine();
 						
 						long startLine = System.nanoTime();
 						
@@ -124,6 +134,7 @@ private static int j = 1;
 						
 						long stop = System.nanoTime();
 						String ar = "Time after reading all results: " + (stop - startLine);
+						//TimeUnit.MINUTES.sleep(1);
 						
 						if (cacheResultAmount != 0) {
 							System.out.println("FOUND ONE");
@@ -153,7 +164,7 @@ private static int j = 1;
 			catch (ExecutionException ee) {}
 			catch (TimeoutException te) {}
 		}
+		
 		w.close();
 	}
-
 }

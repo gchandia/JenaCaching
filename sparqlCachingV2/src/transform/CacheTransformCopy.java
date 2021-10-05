@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.jena.graph.Node;
 import org.apache.jena.graph.NodeFactory;
 import org.apache.jena.graph.Triple;
 import org.apache.jena.sparql.algebra.Algebra;
@@ -24,6 +25,8 @@ public class CacheTransformCopy extends TransformCopy {
 	private long startLine = 0;
 	private String solution = "";
 	
+	private ArrayList<OpBGP> nonFilteredBgps = new ArrayList<OpBGP>();
+	
 	public CacheTransformCopy(SolutionCache cache) {
 		this.myCache = cache;
 	}
@@ -41,10 +44,51 @@ public class CacheTransformCopy extends TransformCopy {
 		this.solution = input;
 	}
 	
+	public ArrayList<OpBGP> filterBgps(ArrayList<OpBGP> input) {
+		ArrayList<OpBGP> output = new ArrayList<OpBGP>();
+		for (OpBGP bgp : input) {
+			Node s = bgp.getPattern().get(0).getSubject();
+			Node p = bgp.getPattern().get(0).getPredicate();
+			Node o = bgp.getPattern().get(0).getObject();
+			
+			if ((s.isVariable() || s.isBlank()) && (p.isVariable() || p.isBlank()) && (o.isVariable() || o.isBlank())) {
+				nonFilteredBgps.add(bgp);
+			}
+			
+			if (!s.isVariable() && !s.isBlank()) {
+				if (!myCache.isInSubjects(s)) {
+					nonFilteredBgps.add(bgp);
+					continue;
+				}
+			}
+			
+			if (!p.isVariable() && !p.isBlank()) {
+				if (!myCache.isInPredicates(p)) {
+					nonFilteredBgps.add(bgp);
+					continue;
+				}
+			}
+			
+			if (!o.isVariable() && !o.isBlank()) {
+				if (!myCache.isInObjects(o)) {
+					nonFilteredBgps.add(bgp);
+					continue;
+				}
+			}
+			
+			output.add(bgp);
+		}
+		return output;
+	}
+	
 	public Op transform(OpBGP bgp) {
 		// Get query bgps
 		ArrayList<OpBGP> bgps = ExtractBgps.getSplitBgps(bgp);
-
+		bgps = ExtractBgps.separateBGPs(bgps);
+		
+		// Filter bgps that have constants in the cache
+		bgps = filterBgps(bgps);
+		
 		// Get all query subbgps of size two and more
 		ArrayList<ArrayList<OpBGP>> subBgps = Joins.getSubBGPs(bgps);
 		
@@ -57,7 +101,7 @@ public class CacheTransformCopy extends TransformCopy {
 		}
 		
 		// Extract size one subBgps
-		ArrayList<OpBGP> sizeOneBgps = ExtractBgps.separateBGPs(bgps);
+		ArrayList<OpBGP> sizeOneBgps = bgps;
 		
 		// Add size one subBgps to our sorted array
 		for (int i = sizeOneBgps.size() - 1; i >= 0; i--) {
@@ -103,6 +147,7 @@ public class CacheTransformCopy extends TransformCopy {
 				ar = "Time after retrieving from cache: " + (afterCache - startLine);
 			}
 		}
+		
 		String sCanon = "Time to canonicalize all subqueries: " + canons;
 		
 		// Join Bgps
@@ -110,12 +155,17 @@ public class CacheTransformCopy extends TransformCopy {
 			
 		if (cachedBgps.size() == 1) {
 			join = cachedBgps.get(0);
-		} else {
+		} else if (cachedBgps.size() > 1){
 			join = OpJoin.create(cachedBgps.get(0), cachedBgps.get(1));
 		}
 		
 		for (int i = 2; i < cachedBgps.size(); i++) {
 			join = OpJoin.create(join, cachedBgps.get(i));
+		}
+		
+		// Add the bgps that haven't been filtered
+		for (int i = 0; i < this.nonFilteredBgps.size(); i++) {
+			join = OpJoin.create(join, this.nonFilteredBgps.get(i));
 		}
 		
 		Op opjoin = Algebra.optimize(join);

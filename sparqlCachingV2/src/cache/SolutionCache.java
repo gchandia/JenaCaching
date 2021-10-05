@@ -3,14 +3,17 @@ package cache;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import org.apache.jena.graph.Node;
 import org.apache.jena.graph.NodeFactory;
 import org.apache.jena.graph.Triple;
+import org.apache.jena.query.Query;
 import org.apache.jena.query.ResultSet;
 import org.apache.jena.sparql.algebra.Algebra;
 import org.apache.jena.sparql.algebra.Op;
@@ -21,19 +24,29 @@ import org.apache.jena.sparql.algebra.table.TableData;
 import org.apache.jena.sparql.algebra.table.TableN;
 import org.apache.jena.sparql.core.BasicPattern;
 import org.apache.jena.sparql.core.Substitute;
+import org.apache.jena.sparql.core.TriplePath;
 import org.apache.jena.sparql.core.Var;
 import org.apache.jena.sparql.engine.binding.Binding;
 import org.apache.jena.sparql.engine.binding.BindingBuilder;
 import org.apache.jena.sparql.engine.binding.BindingFactory;
+import org.apache.jena.sparql.syntax.ElementPathBlock;
+import org.apache.jena.sparql.syntax.ElementVisitorBase;
+import org.apache.jena.sparql.syntax.ElementWalker;
 
 import bgps.ExtractBgps;
 
 public class SolutionCache {
 	private HashMap<OpBGP, OpTable> queryToSolution;
+	private Set<Node> subjects;
+	private Set<Node> objects;
+	private Set<Node> predicates;
 	private String solution = "";
 	
 	public SolutionCache() {
 		this.queryToSolution = new HashMap<OpBGP, OpTable>();
+		this.subjects = new HashSet<Node>();
+		this.objects = new HashSet<Node>();
+		this.predicates = new HashSet<Node>();
 	}
 	
 	private void addToCache(OpBGP bgp, OpTable opt) {
@@ -48,6 +61,24 @@ public class SolutionCache {
 	
 	public void formSolution(String input) {
 		this.solution = input;
+	}
+	
+	public void printConstants() {
+		System.out.println(subjects);
+		System.out.println(predicates);
+		System.out.println(objects);
+	}
+	
+	public boolean isInSubjects(Node s) {
+		return this.subjects.contains(s);
+	}
+	
+	public boolean isInPredicates(Node p) {
+		return this.predicates.contains(p);
+	}
+	
+	public boolean isInObjects(Node o) {
+		return this.objects.contains(o);
 	}
 	
 	public void cache(OpBGP bgp, ResultSet results) {
@@ -69,6 +100,23 @@ public class SolutionCache {
 		addToCache(bgp, opt);
 		System.out.println("Table cached succesfully!");
 		System.out.println("TABLE SIZE IS: " + i);
+	}
+	
+	public void cacheConstants(Query q) {
+		ElementWalker.walk(q.getQueryPattern(), new ElementVisitorBase() {
+			public void visit(ElementPathBlock el) {
+				Iterator<TriplePath> triples = el.patternElts();
+				while (triples.hasNext()) {
+					TriplePath t = triples.next();
+					Node s = t.getSubject();
+					Node p = t.getPredicate();
+					Node o = t.getObject();
+					if (!s.isVariable() && !s.isBlank()) subjects.add(s);
+					if (!p.isVariable() && !p.isBlank()) predicates.add(p);
+					if (!o.isVariable() && !o.isBlank()) objects.add(o);
+				}
+			}
+		});
 	}
 	
 	public boolean isInCache(ArrayList<OpBGP> input) throws Exception {

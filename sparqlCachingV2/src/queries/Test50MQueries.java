@@ -18,7 +18,7 @@ import org.apache.jena.rdf.model.Model;
 import org.apache.jena.tdb.TDBFactory;
 
 import common_joins.Parser;
-import main.SingleQuery;
+import main.java.cl.uchile.dcc.main.*;
 
 public class Test50MQueries {
 	public static void main(String[] args) throws Exception {

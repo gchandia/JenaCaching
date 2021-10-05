@@ -31,7 +31,7 @@ import bgps.ExtractBgps;
 import bgps.ManipulateBgps;
 import cache.SolutionCache;
 import common_joins.Joins;
-import main.SingleQuery;
+import main.java.cl.uchile.dcc.main.*;
 import utils.ArrayPermutations;
 
 public class ExecuteQueries {

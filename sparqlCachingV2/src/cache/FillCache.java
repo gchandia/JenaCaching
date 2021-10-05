@@ -18,7 +18,7 @@ import org.apache.jena.sparql.resultset.ResultSetMem;
 import org.apache.jena.tdb.TDBFactory;
 
 import bgps.ExtractBgps;
-import main.SingleQuery;
+import main.java.cl.uchile.dcc.main.SingleQuery;
 
 public class FillCache {
 	private SolutionCache myCache;
@@ -48,6 +48,7 @@ public class FillCache {
 				+ "  }";
 		
 		Query q11 = QueryFactory.create(s11);
+		myCache.cacheConstants(q11);
 		SingleQuery sq11 = new SingleQuery(q11.toString(), true, true, false, true);
 		q11 = QueryFactory.create(sq11.getQuery(), Syntax.syntaxARQ);
 		ArrayList<OpBGP> q11Bgps = ExtractBgps.getBgps(Algebra.compile(q11));
@@ -58,7 +59,6 @@ public class FillCache {
 		//System.out.println(r.size());
 		//System.out.println(ResultSetFormatter.asText(q10Results));
 		myCache.cache(q11Bgps.get(0), q11Results);
-		
 		
 		String s12 = "PREFIX wiki: <http://www.wikidata.org/prop/direct/>\n"
 				+ "PREFIX we: <http://www.wikidata.org/entity/>\n"
@@ -71,6 +71,7 @@ public class FillCache {
 				+ "  }";
 		
 		Query q12 = QueryFactory.create(s12);
+		myCache.cacheConstants(q12);
 		SingleQuery sq12 = new SingleQuery(q12.toString(), true, true, false, true);
 		q12 = QueryFactory.create(sq12.getQuery(), Syntax.syntaxARQ);
 		ArrayList<OpBGP> q12Bgps = ExtractBgps.getBgps(Algebra.compile(q12));
@@ -94,6 +95,7 @@ public class FillCache {
 				+ "}";
 		
 		Query q13 = QueryFactory.create(s13);
+		myCache.cacheConstants(q13);
 		SingleQuery sq13 = new SingleQuery(q13.toString(), true, true, false, true);
 		q13 = QueryFactory.create(sq13.getQuery(), Syntax.syntaxARQ);
 		ArrayList<OpBGP> q13Bgps = ExtractBgps.getBgps(Algebra.compile(q13));
@@ -118,6 +120,7 @@ public class FillCache {
 				+ "}";
 		
 		Query q14 = QueryFactory.create(s14);
+		myCache.cacheConstants(q14);
 		SingleQuery sq14 = new SingleQuery(q14.toString(), true, true, false, true);
 		q14 = QueryFactory.create(sq14.getQuery(), Syntax.syntaxARQ);
 		ArrayList<OpBGP> q14Bgps = ExtractBgps.getBgps(Algebra.compile(q14));
@@ -143,6 +146,7 @@ public class FillCache {
 				+ "  }";
 		
 		Query q15 = QueryFactory.create(s15);
+		myCache.cacheConstants(q15);
 		SingleQuery sq15 = new SingleQuery(q15.toString(), true, true, false, true);
 		q15 = QueryFactory.create(sq15.getQuery(), Syntax.syntaxARQ);
 		ArrayList<OpBGP> q15Bgps = ExtractBgps.getBgps(Algebra.compile(q15));
@@ -165,6 +169,7 @@ public class FillCache {
 				+ "  }";
 		
 		Query q16 = QueryFactory.create(s16);
+		myCache.cacheConstants(q16);
 		SingleQuery sq16 = new SingleQuery(q16.toString(), true, true, false, true);
 		q16 = QueryFactory.create(sq16.getQuery(), Syntax.syntaxARQ);
 		ArrayList<OpBGP> q16Bgps = ExtractBgps.getBgps(Algebra.compile(q16));
@@ -187,6 +192,7 @@ public class FillCache {
 				+ "  }";
 		
 		Query q17 = QueryFactory.create(s17);
+		myCache.cacheConstants(q17);
 		SingleQuery sq17 = new SingleQuery(q17.toString(), true, true, false, true);
 		q17 = QueryFactory.create(sq17.getQuery(), Syntax.syntaxARQ);
 		ArrayList<OpBGP> q17Bgps = ExtractBgps.getBgps(Algebra.compile(q17));
@@ -209,6 +215,7 @@ public class FillCache {
 				+ "  }";
 		
 		Query q18 = QueryFactory.create(s18);
+		myCache.cacheConstants(q18);
 		SingleQuery sq18 = new SingleQuery(q18.toString(), true, true, false, true);
 		q18 = QueryFactory.create(sq18.getQuery(), Syntax.syntaxARQ);
 		ArrayList<OpBGP> q18Bgps = ExtractBgps.getBgps(Algebra.compile(q18));
@@ -232,6 +239,7 @@ public class FillCache {
 				+ "  }";
 		
 		Query q19 = QueryFactory.create(s19);
+		myCache.cacheConstants(q19);
 		SingleQuery sq19 = new SingleQuery(q19.toString(), true, true, false, true);
 		q19 = QueryFactory.create(sq19.getQuery(), Syntax.syntaxARQ);
 		ArrayList<OpBGP> q19Bgps = ExtractBgps.getBgps(Algebra.compile(q19));
@@ -254,6 +262,7 @@ public class FillCache {
 				+ "  }";
 		
 		Query q20 = QueryFactory.create(s20);
+		myCache.cacheConstants(q20);
 		SingleQuery sq20 = new SingleQuery(q20.toString(), true, true, false, true);
 		q20 = QueryFactory.create(sq20.getQuery(), Syntax.syntaxARQ);
 		ArrayList<OpBGP> q20Bgps = ExtractBgps.getBgps(Algebra.compile(q20));
@@ -264,7 +273,7 @@ public class FillCache {
 		//System.out.println(r.size());
 		//System.out.println(ResultSetFormatter.asText(q10Results));
 		myCache.cache(q20Bgps.get(0), q20Results);
-		
+
 		String s21 = "PREFIX wiki: <http://www.wikidata.org/prop/direct/>\n"
 				+ "PREFIX we: <http://www.wikidata.org/entity/>\n"
 				+ "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n"
@@ -276,6 +285,7 @@ public class FillCache {
 				+ "  }";
 		
 		Query q21 = QueryFactory.create(s21);
+		myCache.cacheConstants(q21);
 		SingleQuery sq21 = new SingleQuery(q21.toString(), true, true, false, true);
 		q21 = QueryFactory.create(sq21.getQuery(), Syntax.syntaxARQ);
 		ArrayList<OpBGP> q21Bgps = ExtractBgps.getBgps(Algebra.compile(q21));
@@ -298,6 +308,7 @@ public class FillCache {
 				+ "  }";
 		
 		Query q22 = QueryFactory.create(s22);
+		myCache.cacheConstants(q22);
 		SingleQuery sq22 = new SingleQuery(q22.toString(), true, true, false, true);
 		q22 = QueryFactory.create(sq22.getQuery(), Syntax.syntaxARQ);
 		ArrayList<OpBGP> q22Bgps = ExtractBgps.getBgps(Algebra.compile(q22));
@@ -320,6 +331,7 @@ public class FillCache {
 				+ "  }";
 		
 		Query q23 = QueryFactory.create(s23);
+		myCache.cacheConstants(q23);
 		SingleQuery sq23 = new SingleQuery(q23.toString(), true, true, false, true);
 		q23 = QueryFactory.create(sq23.getQuery(), Syntax.syntaxARQ);
 		ArrayList<OpBGP> q23Bgps = ExtractBgps.getBgps(Algebra.compile(q23));
@@ -342,6 +354,7 @@ public class FillCache {
 				+ "  }";
 		
 		Query q24 = QueryFactory.create(s24);
+		myCache.cacheConstants(q24);
 		SingleQuery sq24 = new SingleQuery(q24.toString(), true, true, false, true);
 		q24 = QueryFactory.create(sq24.getQuery(), Syntax.syntaxARQ);
 		ArrayList<OpBGP> q24Bgps = ExtractBgps.getBgps(Algebra.compile(q24));
@@ -365,6 +378,7 @@ public class FillCache {
 				+ "  }";
 		
 		Query q25 = QueryFactory.create(s25);
+		myCache.cacheConstants(q25);
 		SingleQuery sq25 = new SingleQuery(q25.toString(), true, true, false, true);
 		q25 = QueryFactory.create(sq25.getQuery(), Syntax.syntaxARQ);
 		ArrayList<OpBGP> q25Bgps = ExtractBgps.getBgps(Algebra.compile(q25));
@@ -384,10 +398,12 @@ public class FillCache {
 				+ "PREFIX schema: <http://schema.org/>\n"
 				+ "SELECT  *\n"
 				+ "WHERE\n"
-				+ "  { ?x  <http://www.wikidata.org/prop/direct/P31>  <http://www.wikidata.org/entity/Q1248784>\n"
+				+ "  { ?x  <http://www.wikidata.org/prop/direct/P31>  <http://www.wikidata.org/entity/Q1248784>.\n"
+				+ "?x <http://www.wikidata.org/prop/direct/P625>  ?var2\n"
 				+ "  }";
 		
 		Query q26 = QueryFactory.create(s26);
+		myCache.cacheConstants(q26);
 		SingleQuery sq26 = new SingleQuery(q26.toString(), true, true, false, true);
 		q26 = QueryFactory.create(sq26.getQuery(), Syntax.syntaxARQ);
 		ArrayList<OpBGP> q26Bgps = ExtractBgps.getBgps(Algebra.compile(q26));
@@ -398,6 +414,7 @@ public class FillCache {
 		//System.out.println(r.size());
 		//System.out.println(ResultSetFormatter.asText(q10Results));
 		myCache.cache(q26Bgps.get(0), q26Results);
+		
 		
 		String s27 = "PREFIX wiki: <http://www.wikidata.org/prop/direct/>\n"
 				+ "PREFIX we: <http://www.wikidata.org/entity/>\n"
@@ -410,6 +427,7 @@ public class FillCache {
 				+ "  }";
 		
 		Query q27 = QueryFactory.create(s27);
+		myCache.cacheConstants(q27);
 		SingleQuery sq27 = new SingleQuery(q27.toString(), true, true, false, true);
 		q27 = QueryFactory.create(sq27.getQuery(), Syntax.syntaxARQ);
 		ArrayList<OpBGP> q27Bgps = ExtractBgps.getBgps(Algebra.compile(q27));
@@ -432,6 +450,7 @@ public class FillCache {
 				+ "  }";
 		
 		Query q28 = QueryFactory.create(s28);
+		myCache.cacheConstants(q28);
 		SingleQuery sq28 = new SingleQuery(q28.toString(), true, true, false, true);
 		q28 = QueryFactory.create(sq28.getQuery(), Syntax.syntaxARQ);
 		ArrayList<OpBGP> q28Bgps = ExtractBgps.getBgps(Algebra.compile(q28));
@@ -454,6 +473,7 @@ public class FillCache {
 				+ "  }";
 		
 		Query q29 = QueryFactory.create(s29);
+		myCache.cacheConstants(q29);
 		SingleQuery sq29 = new SingleQuery(q29.toString(), true, true, false, true);
 		q29 = QueryFactory.create(sq29.getQuery(), Syntax.syntaxARQ);
 		ArrayList<OpBGP> q29Bgps = ExtractBgps.getBgps(Algebra.compile(q29));
@@ -476,6 +496,7 @@ public class FillCache {
 				+ "  }";
 		
 		Query q30 = QueryFactory.create(s30);
+		myCache.cacheConstants(q30);
 		SingleQuery sq30 = new SingleQuery(q30.toString(), true, true, false, true);
 		q30 = QueryFactory.create(sq30.getQuery(), Syntax.syntaxARQ);
 		ArrayList<OpBGP> q30Bgps = ExtractBgps.getBgps(Algebra.compile(q30));
@@ -498,6 +519,7 @@ public class FillCache {
 				+ "  }";
 		
 		Query q31 = QueryFactory.create(s31);
+		myCache.cacheConstants(q31);
 		SingleQuery sq31 = new SingleQuery(q31.toString(), true, true, false, true);
 		q31 = QueryFactory.create(sq31.getQuery(), Syntax.syntaxARQ);
 		ArrayList<OpBGP> q31Bgps = ExtractBgps.getBgps(Algebra.compile(q31));
@@ -520,6 +542,7 @@ public class FillCache {
 				+ "  }";
 		
 		Query q32 = QueryFactory.create(s32);
+		myCache.cacheConstants(q32);
 		SingleQuery sq32 = new SingleQuery(q32.toString(), true, true, false, true);
 		q32 = QueryFactory.create(sq32.getQuery(), Syntax.syntaxARQ);
 		ArrayList<OpBGP> q32Bgps = ExtractBgps.getBgps(Algebra.compile(q32));
@@ -542,6 +565,7 @@ public class FillCache {
 				+ "  }";
 		
 		Query q33 = QueryFactory.create(s33);
+		myCache.cacheConstants(q33);
 		SingleQuery sq33 = new SingleQuery(q33.toString(), true, true, false, true);
 		q33 = QueryFactory.create(sq33.getQuery(), Syntax.syntaxARQ);
 		ArrayList<OpBGP> q33Bgps = ExtractBgps.getBgps(Algebra.compile(q33));
@@ -564,6 +588,7 @@ public class FillCache {
 				+ "  }";
 		
 		Query q34 = QueryFactory.create(s34);
+		myCache.cacheConstants(q34);
 		SingleQuery sq34 = new SingleQuery(q34.toString(), true, true, false, true);
 		q34 = QueryFactory.create(sq34.getQuery(), Syntax.syntaxARQ);
 		ArrayList<OpBGP> q34Bgps = ExtractBgps.getBgps(Algebra.compile(q34));
@@ -586,6 +611,7 @@ public class FillCache {
 				+ "  }";
 		
 		Query q35 = QueryFactory.create(s35);
+		myCache.cacheConstants(q35);
 		SingleQuery sq35 = new SingleQuery(q35.toString(), true, true, false, true);
 		q35 = QueryFactory.create(sq35.getQuery(), Syntax.syntaxARQ);
 		ArrayList<OpBGP> q35Bgps = ExtractBgps.getBgps(Algebra.compile(q35));
@@ -608,6 +634,7 @@ public class FillCache {
 				+ "  }";
 		
 		Query q36 = QueryFactory.create(s36);
+		myCache.cacheConstants(q36);
 		SingleQuery sq36 = new SingleQuery(q36.toString(), true, true, false, true);
 		q36 = QueryFactory.create(sq36.getQuery(), Syntax.syntaxARQ);
 		ArrayList<OpBGP> q36Bgps = ExtractBgps.getBgps(Algebra.compile(q36));
@@ -630,6 +657,7 @@ public class FillCache {
 				+ "  }";
 		
 		Query q37 = QueryFactory.create(s37);
+		myCache.cacheConstants(q37);
 		SingleQuery sq37 = new SingleQuery(q37.toString(), true, true, false, true);
 		q37 = QueryFactory.create(sq37.getQuery(), Syntax.syntaxARQ);
 		ArrayList<OpBGP> q37Bgps = ExtractBgps.getBgps(Algebra.compile(q37));
@@ -652,6 +680,7 @@ public class FillCache {
 				+ "  }";
 		
 		Query q38 = QueryFactory.create(s38);
+		myCache.cacheConstants(q38);
 		SingleQuery sq38 = new SingleQuery(q38.toString(), true, true, false, true);
 		q38 = QueryFactory.create(sq38.getQuery(), Syntax.syntaxARQ);
 		ArrayList<OpBGP> q38Bgps = ExtractBgps.getBgps(Algebra.compile(q38));
@@ -674,6 +703,7 @@ public class FillCache {
 				+ "  }";
 		
 		Query q39 = QueryFactory.create(s39);
+		myCache.cacheConstants(q39);
 		SingleQuery sq39 = new SingleQuery(q39.toString(), true, true, false, true);
 		q39 = QueryFactory.create(sq39.getQuery(), Syntax.syntaxARQ);
 		ArrayList<OpBGP> q39Bgps = ExtractBgps.getBgps(Algebra.compile(q39));
@@ -696,6 +726,7 @@ public class FillCache {
 				+ "  }";
 		
 		Query q40 = QueryFactory.create(s40);
+		myCache.cacheConstants(q40);
 		SingleQuery sq40 = new SingleQuery(q40.toString(), true, true, false, true);
 		q40 = QueryFactory.create(sq40.getQuery(), Syntax.syntaxARQ);
 		ArrayList<OpBGP> q40Bgps = ExtractBgps.getBgps(Algebra.compile(q40));
@@ -718,6 +749,7 @@ public class FillCache {
 				+ "  }";
 		
 		Query q41 = QueryFactory.create(s41);
+		myCache.cacheConstants(q41);
 		SingleQuery sq41 = new SingleQuery(q41.toString(), true, true, false, true);
 		q41 = QueryFactory.create(sq41.getQuery(), Syntax.syntaxARQ);
 		ArrayList<OpBGP> q41Bgps = ExtractBgps.getBgps(Algebra.compile(q41));
@@ -740,6 +772,7 @@ public class FillCache {
 				+ "  }";
 		
 		Query q42 = QueryFactory.create(s42);
+		myCache.cacheConstants(q42);
 		SingleQuery sq42 = new SingleQuery(q42.toString(), true, true, false, true);
 		q42 = QueryFactory.create(sq42.getQuery(), Syntax.syntaxARQ);
 		ArrayList<OpBGP> q42Bgps = ExtractBgps.getBgps(Algebra.compile(q42));
@@ -762,6 +795,7 @@ public class FillCache {
 				+ "  }";
 		
 		Query q43 = QueryFactory.create(s43);
+		myCache.cacheConstants(q43);
 		SingleQuery sq43 = new SingleQuery(q43.toString(), true, true, false, true);
 		q43 = QueryFactory.create(sq43.getQuery(), Syntax.syntaxARQ);
 		ArrayList<OpBGP> q43Bgps = ExtractBgps.getBgps(Algebra.compile(q43));
@@ -784,6 +818,7 @@ public class FillCache {
 				+ "  }";
 		
 		Query q44 = QueryFactory.create(s44);
+		myCache.cacheConstants(q44);
 		SingleQuery sq44 = new SingleQuery(q44.toString(), true, true, false, true);
 		q44 = QueryFactory.create(sq44.getQuery(), Syntax.syntaxARQ);
 		ArrayList<OpBGP> q44Bgps = ExtractBgps.getBgps(Algebra.compile(q44));
@@ -806,6 +841,7 @@ public class FillCache {
 				+ "  }";
 		
 		Query q45 = QueryFactory.create(s45);
+		myCache.cacheConstants(q45);
 		SingleQuery sq45 = new SingleQuery(q45.toString(), true, true, false, true);
 		q45 = QueryFactory.create(sq45.getQuery(), Syntax.syntaxARQ);
 		ArrayList<OpBGP> q45Bgps = ExtractBgps.getBgps(Algebra.compile(q45));
@@ -828,6 +864,7 @@ public class FillCache {
 				+ "  }";
 		
 		Query q46 = QueryFactory.create(s46);
+		myCache.cacheConstants(q46);
 		SingleQuery sq46 = new SingleQuery(q46.toString(), true, true, false, true);
 		q46 = QueryFactory.create(sq46.getQuery(), Syntax.syntaxARQ);
 		ArrayList<OpBGP> q46Bgps = ExtractBgps.getBgps(Algebra.compile(q46));
@@ -850,6 +887,7 @@ public class FillCache {
 				+ "  }";
 		
 		Query q47 = QueryFactory.create(s47);
+		myCache.cacheConstants(q47);
 		SingleQuery sq47 = new SingleQuery(q47.toString(), true, true, false, true);
 		q47 = QueryFactory.create(sq47.getQuery(), Syntax.syntaxARQ);
 		ArrayList<OpBGP> q47Bgps = ExtractBgps.getBgps(Algebra.compile(q47));
@@ -872,6 +910,7 @@ public class FillCache {
 				+ "  }";
 		
 		Query q48 = QueryFactory.create(s48);
+		myCache.cacheConstants(q48);
 		SingleQuery sq48 = new SingleQuery(q48.toString(), true, true, false, true);
 		q48 = QueryFactory.create(sq48.getQuery(), Syntax.syntaxARQ);
 		ArrayList<OpBGP> q48Bgps = ExtractBgps.getBgps(Algebra.compile(q48));
@@ -894,6 +933,7 @@ public class FillCache {
 				+ "  }";
 		
 		Query q49 = QueryFactory.create(s49);
+		myCache.cacheConstants(q49);
 		SingleQuery sq49 = new SingleQuery(q49.toString(), true, true, false, true);
 		q49 = QueryFactory.create(sq49.getQuery(), Syntax.syntaxARQ);
 		ArrayList<OpBGP> q49Bgps = ExtractBgps.getBgps(Algebra.compile(q49));
@@ -916,6 +956,7 @@ public class FillCache {
 				+ "  }";
 		
 		Query q50 = QueryFactory.create(s50);
+		myCache.cacheConstants(q50);
 		SingleQuery sq50 = new SingleQuery(q50.toString(), true, true, false, true);
 		q50 = QueryFactory.create(sq50.getQuery(), Syntax.syntaxARQ);
 		ArrayList<OpBGP> q50Bgps = ExtractBgps.getBgps(Algebra.compile(q50));
@@ -926,6 +967,7 @@ public class FillCache {
 		//System.out.println(r.size());
 		//System.out.println(ResultSetFormatter.asText(q10Results));
 		myCache.cache(q50Bgps.get(0), q50Results);
+		
 	}
 	
 	public void setModel(String s) {

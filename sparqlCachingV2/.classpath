@@ -8,12 +8,13 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
-	<classpathentry kind="lib" path="D:/QCan-master/lib/blabel.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Jena"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Jena-4.1.0"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Jena-3.1.0"/>
+	<classpathentry kind="lib" path="C:/Users/gch12/Desktop/myQcan/lib/automaton.jar"/>
+	<classpathentry kind="lib" path="C:/Users/gch12/Desktop/myQcan/lib/blabel.jar"/>
+	<classpathentry kind="lib" path="C:/Users/gch12/Desktop/myQcan/lib/nxparser-1.2.3.jar"/>
 	<classpathentry kind="lib" path="D:/QCan-master/lib/commons-cli-1.1.jar"/>
 	<classpathentry kind="lib" path="D:/QCan-master/lib/guava-18.0.jar"/>
-	<classpathentry kind="lib" path="D:/QCan-master/lib/nxparser-1.2.3.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Jena"/>
-	<classpathentry kind="lib" path="D:/Descargas/json-simple-1.1.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Jena-4.1.0"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
