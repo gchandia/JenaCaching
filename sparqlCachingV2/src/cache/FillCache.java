@@ -18,7 +18,7 @@ import org.apache.jena.sparql.resultset.ResultSetMem;
 import org.apache.jena.tdb.TDBFactory;
 
 import bgps.ExtractBgps;
-import main.java.cl.uchile.dcc.main.SingleQuery;
+import cl.uchile.dcc.main.SingleQuery;
 
 public class FillCache {
 	private SolutionCache myCache;

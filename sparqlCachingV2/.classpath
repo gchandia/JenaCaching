@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/QCan"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-13">
+	<classpathentry kind="src" output="target/classes" path="src">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-14">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Jena"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Jena-4.1.0"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Jena-3.1.0"/>
-	<classpathentry kind="lib" path="C:/Users/gch12/Desktop/myQcan/lib/automaton.jar"/>
-	<classpathentry kind="lib" path="C:/Users/gch12/Desktop/myQcan/lib/blabel.jar"/>
-	<classpathentry kind="lib" path="C:/Users/gch12/Desktop/myQcan/lib/nxparser-1.2.3.jar"/>
-	<classpathentry kind="lib" path="D:/QCan-master/lib/commons-cli-1.1.jar"/>
-	<classpathentry kind="lib" path="D:/QCan-master/lib/guava-18.0.jar"/>
-	<classpathentry kind="output" path="bin"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Jena-4.1.0"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/qcan"/>
+	<classpathentry kind="output" path="target/classes"/>
 </classpath>
